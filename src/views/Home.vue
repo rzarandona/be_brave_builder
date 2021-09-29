@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>We are traction</h1>
-  </div>
+  <div></div>
 </template>
 
 <script>
@@ -13,3 +11,11 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+body,
+body * {
+  font-family: Poppins;
+}
+</style>
