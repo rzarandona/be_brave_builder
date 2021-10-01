@@ -30,12 +30,25 @@
           </div>
         </div>
       </div>
-      <div class="step">
+
+      <div v-if="character_gender.length" class="step">
         <p class="step-label">Step 2: Pick a character</p>
-        <div class="avatar-selection">
+        <div v-if="character_gender == 'boy'" class="boy avatar-selection">
           <div
             @click="setSelectedAvatar(item)"
-            v-for="item in avatars"
+            v-for="item in boy_avatars"
+            :class="{ 'avatar-item': true, active: character_avatar == item }"
+          >
+            <img
+              :src="'http://157.245.51.194/assets/be_brave/' + item + '.jpg'"
+              alt=""
+            />
+          </div>
+        </div>
+        <div v-if="character_gender == 'girl'" class="girl avatar-selection">
+          <div
+            @click="setSelectedAvatar(item)"
+            v-for="item in girl_avatars"
             :class="{ 'avatar-item': true, active: character_avatar == item }"
           >
             <img
@@ -46,12 +59,14 @@
         </div>
       </div>
 
-      <div class="step">
+      <div v-if="character_avatar.length" class="step">
         <p class="step-label">Step 2: What's your child's name?</p>
         <input class="character-name" type="text" v-model="character_name" />
       </div>
 
-      <button @click="getPreview" class="submit">GET PREVIEW</button>
+      <button v-if="character_name.length" @click="getPreview" class="submit">
+        GET PREVIEW
+      </button>
     </main>
   </div>
 </template>
@@ -64,18 +79,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      avatars: [
-        "boy-a",
-        "boy-b",
-        "boy-c",
-        "boy-d",
-        "boy-e",
-        "girl-a",
-        "girl-b",
-        "girl-c",
-        "girl-d",
-        "girl-e",
-      ],
+      boy_avatars: ["boy-a", "boy-b", "boy-c", "boy-d", "boy-e"],
+      girl_avatars: ["girl-a", "girl-b", "girl-c", "girl-d", "girl-e"],
       is_loading: false,
       character_avatar: "",
       character_gender: "",

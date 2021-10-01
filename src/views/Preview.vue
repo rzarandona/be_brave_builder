@@ -4,7 +4,10 @@
     <main class="container">
       <div class="step">
         <p>Thanks for waiting! Here's your preview.</p>
-        <img class="preview-image" :src="preview_url" alt="" />
+        <div
+          :style="{ 'background-image': 'url(' + preview_url + ')' }"
+          class="preview"
+        ></div>
       </div>
       <a target="_blank" :href="pdf_url">
         <button class="submit">DEV : VIEW PDF</button></a
@@ -31,9 +34,10 @@ export default {
 </script>
 
 <style scoped>
-.preview-image {
-  width: 100%;
-  transition: 0.2s;
+.preview {
+  height: 543.5px;
+  background-size: cover;
+  background-position: bottom;
 }
 a {
   text-decoration: none;
