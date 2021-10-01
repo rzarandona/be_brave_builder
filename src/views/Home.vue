@@ -119,7 +119,7 @@ export default {
         .get("http://157.245.51.194/api/hectors_post/be_brave/create.php", {
           params: {
             character_name: instance.character_name,
-            gender: instance.gender,
+            gender: instance.character_gender,
             s_pronoun: instance.s_pronoun,
             o_pronoun: instance.o_pronoun,
             p_pronoun: instance.p_pronoun,
