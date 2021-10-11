@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     preview_url: "",
-    pdf_url: "",
+    inner_pdf_url: "",
   },
   mutations: {},
   actions: {},

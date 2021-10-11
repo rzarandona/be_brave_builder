@@ -133,7 +133,9 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.$store.state.preview_url = res.data.image;
-          this.$store.state.pdf_url = res.data.pdf;
+          this.$store.state.inner_pdf_url = res.data.inner_pdf;
+          this.$store.state.outer_pdf_url = res.data.outer_pdf;
+
           instance.$router.push({
             name: "Preview",
           });
