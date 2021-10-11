@@ -135,6 +135,7 @@ export default {
           this.$store.state.preview_url = res.data.image;
           this.$store.state.inner_pdf_url = res.data.inner_pdf;
           this.$store.state.outer_pdf_url = res.data.outer_pdf;
+          this.$store.state.source_id = res.data.source_id;
 
           instance.$router.push({
             name: "Preview",

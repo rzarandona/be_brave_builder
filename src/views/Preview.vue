@@ -34,6 +34,9 @@ export default {
     outer_pdf_url() {
       return this.$store.state.outer_pdf_url;
     },
+    source_id() {
+      return this.$store.state.source_id;
+    },
   },
   methods: {
     submit() {
@@ -42,13 +45,13 @@ export default {
           name: "pureprint",
         },
         orderData: {
-          sourceOrderId: "TESTORDER999",
+          sourceOrderId: this.source_id,
           customerName: "hectorspost",
           items: [
             {
-              barcode: "TESTORDER999",
+              barcode: this.source_id,
               shipmentIndex: 0,
-              sourceItemId: "TESTORDER999",
+              sourceItemId: this.source_id,
               sku: "hectorspost_staging",
               quantity: 1,
               unitCost: 0.0,
