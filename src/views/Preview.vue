@@ -9,11 +9,14 @@
           class="preview"
         ></div>
       </div>
-      <a target="_blank" :href="inner_pdf_url">
+      <!-- <a target="_blank" :href="inner_pdf_url">
         <button class="submit">DEV : VIEW PDF</button></a
       >
       <br /><br />
-      <button @click="submit" class="submit">SUBMIT TO PUREPRINT</button>
+      <button @click="submit" class="submit">SUBMIT TO PUREPRINT</button> -->
+      <button @click="proceedToCheckout" class="submit">
+        PROCEED TO CHECKOUT
+      </button>
     </main>
   </div>
 </template>
@@ -22,6 +25,7 @@
 import NavigationBar from "../components/NavigationBar.vue";
 import crypto from "crypto-js";
 import axios from "axios";
+import qs from "qs";
 
 export default {
   computed: {
@@ -36,6 +40,9 @@ export default {
     },
     source_id() {
       return this.$store.state.source_id;
+    },
+    purchaser_email() {
+      return this.$store.state.purchaser_email;
     },
   },
   methods: {
@@ -125,6 +132,28 @@ export default {
         })
         .then((res) => {
           console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    proceedToCheckout() {
+      axios
+        .post(
+          "http://157.245.51.194/api/hectors_post/be_brave/save_submission.php",
+          qs.stringify({
+            email: this.purchaser_email,
+            outer_pdf_url: this.outer_pdf_url,
+            inner_pdf_url: this.inner_pdf_url,
+            preview_url: this.preview_url,
+          })
+        )
+        .then((res) => {
+          console.log(res);
+          window.location.replace(
+            "http://157.245.51.194/sites/hp/checkout/?add-to-cart=635&session_id=" +
+              res.data
+          );
         })
         .catch((err) => {
           console.log(err);

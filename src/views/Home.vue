@@ -6,63 +6,72 @@
     </transition>
     <main class="container">
       <div class="step">
-        <p class="step-label">Step 1: Select a gender</p>
-        <div class="gender-selector">
-          <div
-            @click="setCharacterGender('girl')"
-            :class="{
-              girl: true,
-              'gender-item': true,
-              active: character_gender == 'girl',
-            }"
-          >
-            GIRL
-          </div>
-          <div
-            @click="setCharacterGender('boy')"
-            :class="{
-              boy: true,
-              'gender-item': true,
-              active: character_gender == 'boy',
-            }"
-          >
-            BOY
+        <p class="step-label">What's your email?</p>
+        <small class="notice">This email shall be used upon checkout.</small>
+        <input class="character-name" type="text" v-model="purchaser_email" />
+      </div>
+      <transition name="fade">
+        <div v-if="purchaser_email.length" class="step">
+          <p class="step-label">Select a gender</p>
+          <div class="gender-selector">
+            <div
+              @click="setCharacterGender('girl')"
+              :class="{
+                girl: true,
+                'gender-item': true,
+                active: character_gender == 'girl',
+              }"
+            >
+              GIRL
+            </div>
+            <div
+              @click="setCharacterGender('boy')"
+              :class="{
+                boy: true,
+                'gender-item': true,
+                active: character_gender == 'boy',
+              }"
+            >
+              BOY
+            </div>
           </div>
         </div>
-      </div>
-
-      <div v-if="character_gender.length" class="step">
-        <p class="step-label">Step 2: Pick a character</p>
-        <div v-if="character_gender == 'boy'" class="boy avatar-selection">
-          <div
-            @click="setSelectedAvatar(item)"
-            v-for="item in boy_avatars"
-            :class="{ 'avatar-item': true, active: character_avatar == item }"
-          >
-            <img
-              :src="'http://157.245.51.194/assets/be_brave/' + item + '.jpg'"
-              alt=""
-            />
+      </transition>
+      <transition name="fade">
+        <div v-if="character_gender.length" class="step">
+          <p class="step-label">Pick a character</p>
+          <div v-if="character_gender == 'boy'" class="boy avatar-selection">
+            <div
+              @click="setSelectedAvatar(item)"
+              v-for="item in boy_avatars"
+              :class="{ 'avatar-item': true, active: character_avatar == item }"
+            >
+              <img
+                :src="'http://157.245.51.194/assets/be_brave/' + item + '.jpg'"
+                alt=""
+              />
+            </div>
+          </div>
+          <div v-if="character_gender == 'girl'" class="girl avatar-selection">
+            <div
+              @click="setSelectedAvatar(item)"
+              v-for="item in girl_avatars"
+              :class="{ 'avatar-item': true, active: character_avatar == item }"
+            >
+              <img
+                :src="'http://157.245.51.194/assets/be_brave/' + item + '.jpg'"
+                alt=""
+              />
+            </div>
           </div>
         </div>
-        <div v-if="character_gender == 'girl'" class="girl avatar-selection">
-          <div
-            @click="setSelectedAvatar(item)"
-            v-for="item in girl_avatars"
-            :class="{ 'avatar-item': true, active: character_avatar == item }"
-          >
-            <img
-              :src="'http://157.245.51.194/assets/be_brave/' + item + '.jpg'"
-              alt=""
-            />
-          </div>
+      </transition>
+      <transition name="fade">
+        <div v-if="character_avatar.length" class="step">
+          <p class="step-label">What's your child's name?</p>
+          <input class="character-name" type="text" v-model="character_name" />
         </div>
-      </div>
-
-      <div v-if="character_avatar.length" class="step">
-        <p class="step-label">Step 2: What's your child's name?</p>
-        <input class="character-name" type="text" v-model="character_name" />
-      </div>
+      </transition>
 
       <button v-if="character_name.length" @click="getPreview" class="submit">
         GET PREVIEW
@@ -85,6 +94,7 @@ export default {
       character_avatar: "",
       character_gender: "",
       character_name: "",
+      purchaser_email: "",
     };
   },
   computed: {
@@ -118,6 +128,8 @@ export default {
       this.character_gender = gender;
     },
     getPreview() {
+      this.$store.state.purchaser_email = this.purchaser_email;
+
       let instance = this;
       instance.is_loading = true;
       axios
@@ -253,6 +265,15 @@ button.submit {
 }
 button.submit:hover {
   background: #000000;
+}
+
+.notice {
+  color: #aaa;
+  letter-spacing: 1.5px;
+}
+p {
+  font-weight: bold;
+  letter-spacing: 1.5px;
 }
 .fade-enter-active,
 .fade-leave-active {
