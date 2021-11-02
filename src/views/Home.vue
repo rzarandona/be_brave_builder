@@ -137,6 +137,7 @@ export default {
           params: {
             character_name: instance.character_name,
             gender: instance.character_gender,
+            character: instance.character_avatar,
             s_pronoun: instance.s_pronoun,
             o_pronoun: instance.o_pronoun,
             p_pronoun: instance.p_pronoun,
