@@ -47,7 +47,7 @@
               :class="{ 'avatar-item': true, active: character_avatar == item }"
             >
               <img
-                :src="'http://157.245.51.194/assets/be_brave/' + item + '.jpg'"
+                :src="'https://bebrave.hectorspost.com/assets/' + item + '.jpg'"
                 alt=""
               />
             </div>
@@ -59,7 +59,7 @@
               :class="{ 'avatar-item': true, active: character_avatar == item }"
             >
               <img
-                :src="'http://157.245.51.194/assets/be_brave/' + item + '.jpg'"
+                :src="'https://bebrave.hectorspost.com/assets/' + item + '.jpg'"
                 alt=""
               />
             </div>
