@@ -8,6 +8,7 @@ export default new Vuex.Store({
     preview_url: "",
     inner_pdf_url: "",
     purchaser_email: "",
+    cover_type: "",
   },
   mutations: {},
   actions: {},

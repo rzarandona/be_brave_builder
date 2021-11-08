@@ -73,6 +73,34 @@
         </div>
       </transition>
 
+      <transition name="fade">
+        <div v-if="character_name.length" class="step">
+          <p class="step-label">Cover Type</p>
+          <div class="gender-selector">
+            <div
+              @click="setCoverType('softback')"
+              :class="{
+                softback: true,
+                'cover-type-item': true,
+                active: cover_type == 'softback',
+              }"
+            >
+              SOFTBACK — €18
+            </div>
+            <div
+              @click="setCoverType('hardback')"
+              :class="{
+                hardback: true,
+                'cover-type-item': true,
+                active: cover_type == 'hardback',
+              }"
+            >
+              HARDBACK — €24
+            </div>
+          </div>
+        </div>
+      </transition>
+
       <button v-if="character_name.length" @click="getPreview" class="submit">
         GET PREVIEW
       </button>
@@ -95,6 +123,7 @@ export default {
       character_gender: "",
       character_name: "",
       purchaser_email: "",
+      cover_type: "",
     };
   },
   computed: {
@@ -127,8 +156,12 @@ export default {
     setCharacterGender(gender) {
       this.character_gender = gender;
     },
+    setCoverType(cover_type) {
+      this.cover_type = cover_type;
+    },
     getPreview() {
       this.$store.state.purchaser_email = this.purchaser_email;
+      this.$store.state.cover_type = this.cover_type;
 
       let instance = this;
       instance.is_loading = true;
@@ -208,7 +241,8 @@ main.container {
   grid-template-columns: 1fr 1fr;
   margin-top: 20px;
 }
-.gender-item {
+.gender-item,
+.cover-type-item {
   display: grid;
   place-content: center;
   padding: 30px;
@@ -217,7 +251,8 @@ main.container {
   font-size: 20px;
   cursor: pointer;
 }
-.gender-item.active {
+.gender-item.active,
+.cover-type-item.active {
   background: #58a241;
   color: white;
 }

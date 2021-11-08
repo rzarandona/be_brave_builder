@@ -44,6 +44,9 @@ export default {
     purchaser_email() {
       return this.$store.state.purchaser_email;
     },
+    cover_type() {
+      return this.$store.state.cover_type;
+    },
   },
   methods: {
     submit() {
