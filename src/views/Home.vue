@@ -166,7 +166,7 @@ export default {
       let instance = this;
       instance.is_loading = true;
       axios
-        .get("http://157.245.51.194/api/hectors_post/be_brave/create.php", {
+        .get("https://bebraveapi.hectorspost.com/create.php", {
           params: {
             character_name: instance.character_name,
             gender: instance.character_gender,

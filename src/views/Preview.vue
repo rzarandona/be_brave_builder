@@ -143,7 +143,7 @@ export default {
     proceedToCheckout() {
       axios
         .post(
-          "http://157.245.51.194/api/hectors_post/be_brave/save_submission.php",
+          "https://bebraveapi.hectorspost.com/save_submission.php",
           qs.stringify({
             email: this.purchaser_email,
             outer_pdf_url: this.outer_pdf_url,
@@ -154,7 +154,7 @@ export default {
         .then((res) => {
           console.log(res);
           window.location.replace(
-            "http://157.245.51.194/sites/hp/checkout/?add-to-cart=635&session_id=" +
+            "https://hectorspost.com/checkout/?add-to-cart=635&session_id=" +
               res.data
           );
         })
