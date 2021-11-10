@@ -153,8 +153,12 @@ export default {
         )
         .then((res) => {
           console.log(res);
+          let product_id = 937;
+          if (this.cover_type == "hardback") {
+            product_id = 635;
+          }
           window.location.replace(
-            "https://hectorspost.com/checkout/?add-to-cart=635&session_id=" +
+            `https://hectorspost.com/checkout/?add-to-cart=${product_id}&session_id=` +
               res.data
           );
         })
