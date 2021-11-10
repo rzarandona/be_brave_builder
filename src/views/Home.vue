@@ -174,6 +174,7 @@ export default {
             s_pronoun: instance.s_pronoun,
             o_pronoun: instance.o_pronoun,
             p_pronoun: instance.p_pronoun,
+            cover_type: instance.cover_type,
           },
         })
         .then((res) => {

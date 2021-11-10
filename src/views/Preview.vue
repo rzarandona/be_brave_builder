@@ -149,7 +149,6 @@ export default {
             outer_pdf_url: this.outer_pdf_url,
             inner_pdf_url: this.inner_pdf_url,
             preview_url: this.preview_url,
-            cover_type: this.cover_type,
           })
         )
         .then((res) => {
