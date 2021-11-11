@@ -47,6 +47,10 @@ export default {
     cover_type() {
       return this.$store.state.cover_type;
     },
+    sku() {
+      if (this.cover_type == "hardback") return "hectorspost_hardback_210x210";
+      return "hectorspost_softback_210x210";
+    },
   },
   methods: {
     submit() {
@@ -149,6 +153,8 @@ export default {
             outer_pdf_url: this.outer_pdf_url,
             inner_pdf_url: this.inner_pdf_url,
             preview_url: this.preview_url,
+            cover_type: this.cover_type,
+            sku: this.sku,
           })
         )
         .then((res) => {
