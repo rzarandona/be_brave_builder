@@ -182,7 +182,7 @@ export default {
 <style scoped>
 .preview {
   height: 543.5px;
-  background-size: cover;
+  background-size: 148%;
   background-position: top;
 }
 a {
