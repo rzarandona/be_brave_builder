@@ -6,7 +6,7 @@
     </transition>
     <main class="container">
       <div class="step">
-        <p class="step-label">What's your email?</p>
+        <p class="step-label">What's your email address?</p>
         <small class="notice">This email shall be used upon checkout.</small>
         <input class="character-name" type="text" v-model="purchaser_email" />
       </div>
